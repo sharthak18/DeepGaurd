@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepguard"
+version = "0.1.0"
+description = "Open-source deepfake detector for images, video and audio — powered by free external AI APIs."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "DeepGuard Contributors" }]
+keywords = ["deepfake", "ai-detection", "forensics", "media-integrity"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.7.0",
+    "click>=8.1.0",
+    "Pillow>=10.0.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-mock>=3.12.0",
+    "responses>=0.25.0",
+    "ruff>=0.3.0",
+]
+
+[project.scripts]
+deepguard = "deepguard.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/your-org/deepguard"
+Repository = "https://github.com/your-org/deepguard"
+"Bug Tracker" = "https://github.com/your-org/deepguard/issues"
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

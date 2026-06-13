@@ -1,0 +1,14 @@
+requests>=2.31.0
+python-dotenv>=1.0.0
+rich>=13.7.0
+click>=8.1.0
+Pillow>=10.0.0
+tqdm>=4.66.0
+huggingface_hub>=0.23.0
+streamlit>=1.35.0
+
+# Dev / test dependencies
+pytest>=7.4.0
+pytest-mock>=3.12.0
+responses>=0.25.0
+ruff>=0.3.0

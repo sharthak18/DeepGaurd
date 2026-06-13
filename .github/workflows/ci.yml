@@ -1,0 +1,49 @@
+name: DeepGuard CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check deepguard/ tests/
+
+  test:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+
+      - name: Create dummy .env (tests mock all API calls)
+        run: |
+          echo "HF_TOKEN=hf_test_token_ci" > .env
+          echo "SE_API_USER=" >> .env
+          echo "SE_API_SECRET=" >> .env
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short
+
+      - name: Check CLI help
+        run: deepguard --help
