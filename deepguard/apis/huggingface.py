@@ -20,11 +20,10 @@ import logging
 import tempfile
 import time
 from pathlib import Path
-from typing import Any
 
-from PIL import Image as PilImage
 from huggingface_hub import InferenceClient
 from huggingface_hub.errors import HfHubHTTPError
+from PIL import Image as PilImage
 
 from deepguard import config
 

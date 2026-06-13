@@ -9,14 +9,12 @@ video-specific logic: frame aggregation, cleanup, empty-frame handling.
 
 from __future__ import annotations
 
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
 from deepguard.ensemble import aggregate_frames
 from deepguard.utils.report import DetectionResult, ModelScore
-
 
 # ── aggregate_frames tests ───────────────────────────────────────────────
 
@@ -72,7 +70,6 @@ def test_aggregate_frames_empty():
 @patch("deepguard.detectors.video_detector.require_ffmpeg")
 def test_video_detect_fake(mock_require_ffmpeg, mock_img_detect, mock_extract, tmp_path):
     """detect() with 3 fake frames → FAKE verdict."""
-    import shutil
 
     video = tmp_path / "test.mp4"
     video.write_bytes(b"\x00" * 100)

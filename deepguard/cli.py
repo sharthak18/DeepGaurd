@@ -23,10 +23,9 @@ from pathlib import Path
 import click
 from rich.console import Console
 from rich.panel import Panel
-from rich.text import Text
 
 from deepguard import __version__
-from deepguard.utils.file_utils import MediaType, detect_media_type, FileValidationError
+from deepguard.utils.file_utils import FileValidationError, MediaType, detect_media_type
 
 console = Console()
 err_console = Console(stderr=True)
@@ -91,7 +90,10 @@ def detect(file: str, force_type: str | None, output_json: bool, output: str | N
         sys.exit(1)
 
     from deepguard.utils.report import (
-        print_image_result, print_video_result, print_audio_result, to_json
+        print_audio_result,
+        print_image_result,
+        print_video_result,
+        to_json,
     )
 
     path = Path(file)
