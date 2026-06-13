@@ -10,15 +10,13 @@ and the detect() orchestrator function.
 
 from __future__ import annotations
 
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
 from deepguard.apis.huggingface import normalize_label
 from deepguard.ensemble import aggregate
 from deepguard.utils.report import ModelScore
-
 
 # ── normalize_label tests ────────────────────────────────────────────────
 
@@ -152,8 +150,8 @@ def test_image_detect_real(mock_hf_classify, tmp_path):
 
 
 def test_image_detect_invalid_file(tmp_path):
-    from deepguard.utils.file_utils import FileValidationError
     from deepguard.detectors.image_detector import detect
+    from deepguard.utils.file_utils import FileValidationError
 
     with pytest.raises(FileValidationError):
         detect(tmp_path / "nonexistent.jpg")

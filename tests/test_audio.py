@@ -9,13 +9,11 @@ to test the detect() orchestrator and label normalisation for audio.
 
 from __future__ import annotations
 
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
 from deepguard.apis.huggingface import normalize_label
-
 
 # ── Audio-specific label normalisation ───────────────────────────────────
 
@@ -124,8 +122,8 @@ def test_audio_detect_api_failure_partial(mock_classify, mock_convert, tmp_path)
 
 
 def test_audio_detect_missing_file(tmp_path):
-    from deepguard.utils.file_utils import FileValidationError
     from deepguard.detectors.audio_detector import detect
+    from deepguard.utils.file_utils import FileValidationError
 
     with pytest.raises(FileValidationError):
         detect(tmp_path / "nonexistent.mp3")

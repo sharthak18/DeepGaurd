@@ -90,11 +90,11 @@ def aggregate(
     hf_fake_prob = weighted_sum / total_weight if total_weight > 0 else 0.5
 
     fake_prob = hf_fake_prob
-    
+
     # 1. Incorporate Sightengine if available (e.g. 20% weight)
     if sightengine_score is not None:
         fake_prob = fake_prob * (1.0 - se_weight) + sightengine_score * se_weight
-        
+
     # 2. Incorporate ELA if available and significant
     # If ELA score is high (anomaly), it strongly pulls the probability towards FAKE.
     if ela_prob is not None:

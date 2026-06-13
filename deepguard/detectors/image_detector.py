@@ -19,8 +19,8 @@ from pathlib import Path
 from deepguard import config
 from deepguard.apis import huggingface as hf_api
 from deepguard.apis import sightengine as se_api
-from deepguard.detectors.metadata_detector import check_c2pa
 from deepguard.detectors.ela_detector import run_ela
+from deepguard.detectors.metadata_detector import check_c2pa
 from deepguard.ensemble import aggregate
 from deepguard.utils.file_utils import MediaType, validate_file
 from deepguard.utils.report import DetectionResult, ModelScore
@@ -82,7 +82,7 @@ def detect(image_path: Path | str) -> DetectionResult:
 
     # ── Ensemble ─────────────────────────────────────────────────────────
     verdict, fake_prob, confidence = aggregate(
-        model_scores=model_scores, 
+        model_scores=model_scores,
         sightengine_score=se_score,
         metadata_prob=metadata_prob,
         ela_prob=ela_prob

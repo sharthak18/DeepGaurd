@@ -7,9 +7,10 @@ Raises a clear ConfigError if a required key is missing.
 
 from __future__ import annotations
 
-import os
 import logging
+import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)

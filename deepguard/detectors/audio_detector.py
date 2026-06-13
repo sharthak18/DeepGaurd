@@ -17,7 +17,6 @@ Supported input formats: .wav .mp3 .flac .ogg .aac .m4a .opus .wma
 from __future__ import annotations
 
 import logging
-import shutil
 from pathlib import Path
 
 from deepguard.utils.file_utils import MediaType, validate_file
@@ -48,7 +47,7 @@ def detect(audio_path: Path | str) -> DetectionResult:
     # Audio models are currently unsupported on the HF free inference API
     # and local hardware constraints prevent downloading the multi-GB models.
     logger.warning("Audio deepfake detection is temporarily disabled due to lack of free API support.")
-    
+
     return DetectionResult(
         file_path=str(path.resolve()),
         media_type="audio",
